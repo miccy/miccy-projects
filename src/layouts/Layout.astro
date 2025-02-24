@@ -1,0 +1,62 @@
+import ThemeToggle from '../components/ThemeToggle.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Portfolio</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ThemeToggle />
+				<LanguageToggle />
+			</nav>
+		</header>
+		<slot />
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		min-height: 100vh;
+		background-color: var(--background-color);
+		color: var(--text-color);
+	}
+
+	header {
+		padding: 1rem;
+		background: var(--header-bg);
+	}
+
+	nav {
+		display: flex;
+		justify-content: flex-end;
+		gap: 1rem;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	:root {
+		--background-color: #ffffff;
+		--text-color: #111827;
+		--header-bg: #f3f4f6;
+		--hover-color: #e5e7eb;
+		--active-color: #d1d5db;
+	}
+
+	:root.dark {
+		--background-color: #111827;
+		--text-color: #ffffff;
+		--header-bg: #1f2937;
+		--hover-color: #374151;
+		--active-color: #4b5563;
+	}
+</style>

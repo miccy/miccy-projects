@@ -1,0 +1,47 @@
+---
+---
+<div class="language-select">
+  <button class="lang-btn" data-lang="cs">🇨🇿 CS</button>
+  <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+</div>
+
+<style>
+  .language-select {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .lang-btn {
+    padding: 0.5rem;
+    border: none;
+    background: var(--background-color);
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .lang-btn:hover {
+    background: var(--hover-color);
+  }
+  .lang-btn.active {
+    background: var(--active-color);
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const lang = localStorage.getItem('lang') || 'cs';
+    document.documentElement.lang = lang;
+    
+    const buttons = document.querySelectorAll('.lang-btn');
+    buttons.forEach(btn => {
+      if (btn.getAttribute('data-lang') === lang) {
+        btn.classList.add('active');
+      }
+      
+      btn.addEventListener('click', () => {
+        const newLang = btn.getAttribute('data-lang');
+        localStorage.setItem('lang', newLang);
+        window.location.reload();
+      });
+    });
+  });
+</script>
